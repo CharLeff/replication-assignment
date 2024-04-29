@@ -1,0 +1,72 @@
+path:
+  root_dir: ${oc.env:PROJECT_ROOT}
+  data_dir: ${path.root_dir}/data
+  log_dir: ${path.root_dir}/logs
+  ckp_dir: ${path.root_dir}/checkpoint
+  pred_dir: ${path.root_dir}/pred
+  glove_path: ${path.root_dir}/data/glove/glove.840B.300d.txt
+model:
+  his_size: 50
+  title_size: 30
+  abstract_size: 50
+  word_freq_threshold: 1
+  entity_size: 5
+  word_emb_dim: 300
+  category_emb_dim: 100
+  subcategory_emb_dim: 100
+  entity_emb_dim: 100
+  attention_hidden_dim: 200
+  head_num: 20
+  head_dim: 20
+  word_filter_num: 0
+  use_graph: true
+  use_entity: true
+  num_neighbors: 8
+  model_name: GLORY
+  entity_neighbors: 10
+  use_graph_type: 0
+  directed: true
+  k_hops: 2
+logger:
+  exp_name: GLORY
+  run_name: ${model.model_name}_${dataset.dataset_name}_${model.k_hops}-${model.num_neighbors}-${model.entity_neighbors}
+dataset:
+  dataset_name: MINDsmall
+  dataset_dir: ${path.data_dir}/MINDlarge
+  dataset_lang: english
+  train_len: 156965
+  val_len: 73154
+  test_len: 73154
+  pos_count: 236344
+  news_num: 51282
+  word_num: 70974
+  user_num: 50000
+  category_num: 17
+  subcategory_num: 264
+  train_dir: ${dataset.dataset_dir}/train
+  val_dir: ${dataset.dataset_dir}/val
+  test_dir: ${dataset.dataset_dir}/test
+seed: 3407
+num_epochs: 5
+batch_size: 32
+npratio: 4
+accumulation_steps: 1
+train_mode: true
+val_mode: true
+num_workers: 4
+dropout_probability: 0.2
+early_stop_patience: 5
+enable_prefetch: true
+enable_shuffle: false
+log_steps: 1000
+load_checkpoint: false
+val_steps: 1000
+ml_label: default
+gpu_num: 1
+reprocess: false
+optimizer:
+  lr: 0.0002
+load_mark: base_small
+reprocess_neighbors: false
+warmup_ratio: 0.1
+val_skip_epochs: 2

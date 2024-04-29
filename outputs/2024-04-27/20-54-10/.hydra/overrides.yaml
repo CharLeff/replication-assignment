@@ -1,0 +1,3 @@
+- model=GLORY
+- dataset=MINDsmall
+- reprocess=False
